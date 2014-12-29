@@ -1,0 +1,14 @@
+{
+  "name": "<AppName>",
+  "version": "0.0.0",
+  "authors": [
+    "Your Name <your.mail@gmail.com>"
+  ],
+  "description": "Simple template of an Angular app using Bower and Grunt",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.4",
+    "angular-route": "~1.3.4"
+  }
+}
