@@ -7,6 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="css/app.css">
 	</head>
 	<body>
-		<section ng-view></section>
+		<header ui-view="header"></header>
+		<section ui-view="content" class="container"></section>
+		<footer ui-view="footer"></footer>
 	</body>
 </html>

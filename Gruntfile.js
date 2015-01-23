@@ -1,6 +1,7 @@
-var bower_components = [
+var modules = [
+  'bower_components/lodash/lodash.js',
   'bower_components/angular/angular.js',
-  'bower_components/angular-route/angular-route.js'
+  'bower_components/angular-ui-router/release/angular-ui-router.js'
 ];
 
 module.exports = function(grunt) {
@@ -11,7 +12,7 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: [ bower_components, 'app/js/*.js', 'app/js/controllers/*.js' ],
+        src: [ modules, 'app/js/*.js', 'app/js/controllers/*.js' ],
         dest: 'dist/js/app.js'
       }
     },
@@ -26,13 +27,13 @@ module.exports = function(grunt) {
     less: {
       dev: {
         options: {
-          paths: ["app/less"]
+          paths: ['app/less']
         },
         files: {'dist/css/app.css': 'app/less/app.less'}
       },
       prod: {
         options: {
-          paths: ["app/less"],
+          paths: ['app/less'],
           cleancss: true
         },
         files: {'dist/css/app.css': 'app/less/app.less'}

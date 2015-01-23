@@ -1,0 +1,1 @@
+app.controller('OtherViewController', function ($scope, $http) { });
