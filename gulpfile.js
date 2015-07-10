@@ -36,7 +36,7 @@ var paths = {
         app + '/**/*.less',
     ],
     images: [
-        app + '/img/**/*.{png,jpg,svg,gif,jpeg}',
+        app + '/img/**/*.{png,jpg,svg,gif,jpeg,PNG,JPG,SVG,GIF,JPEG}'
     ],
     fonts: [
         'bower_components/bootstrap/fonts/**/*',
@@ -77,7 +77,7 @@ gulp.task('styles', function () {
     stream.queue(
         gulp.src(paths.css)
             .pipe(plumber())
-            .pipe(concat('styles.css'))
+            .pipe(concat('styles.less'))
     );
 
     stream.queue(
@@ -129,7 +129,7 @@ gulp.task('utils', function () {
 gulp.task('watch', function () {
     livereload.listen();
     gulp.watch(paths.js.src, ['js']);
-    gulp.watch(paths.sass, ['styles']);
+    gulp.watch(paths.less, ['styles']);
     gulp.watch(paths.misc, ['copy']);
     paths.partials.forEach(function (partials) {
         gulp.watch(partials.files, ['js']);
