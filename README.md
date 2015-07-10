@@ -1,1 +1,1 @@
-Simple skeleton for an Angular app using Bower, Grunt and Less.
+Simple skeleton for an Angular app using Bower, Gulp and Less.
