@@ -8,13 +8,12 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.2",
+    "angular": "~1.4.7",
+    "angular-bootstrap": "~0.14.1",
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
-    "lodash": "~3.10.0"
-  },
-  "resolutions": {
-    "angular": "~1.4.2",
-    "lodash": "~3.10.0"
+    "font-awesome": "~4.4.0",
+    "lodash": "~3.10.1",
+    "moment": "~2.10.6"
   }
 }

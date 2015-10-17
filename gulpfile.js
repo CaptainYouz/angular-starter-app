@@ -1,72 +1,97 @@
-var gulp        = require('gulp');
-var concat      = require('gulp-concat');
 var streamqueue = require('streamqueue');
+var gulp        = require('gulp');
+var gutil       = require('gulp-util');
+var concat      = require('gulp-concat');
+var replace     = require('gulp-replace');
 var htmlmin     = require('gulp-htmlmin');
 var ngtemplates = require('gulp-angular-templatecache');
 var less        = require('gulp-less');
+var jshint      = require('gulp-jshint');
+var uglify      = require('gulp-uglify');
+var uncss       = require('gulp-uncss');
+var minifyCss   = require('gulp-minify-css');
 var livereload  = require('gulp-livereload');
-var plumber     = require('gulp-plumber');
 
+var appName     = 'skeleton-app';
 var app         = 'app';
 var dist        = 'dist';
+
+var env         = (gutil.env.env === 'production') ? gutil.env.env : 'development';
+
+gutil.log('Building of the ' + env + ' environment.');
 
 var paths = {
     js: {
         libs: [
+            'bower_components/moment/moment.js',
             'bower_components/lodash/lodash.js',
             'bower_components/angular/angular.js',
-            'bower_components/angular-ui-router/release/angular-ui-router.js'
+            'bower_components/angular-bootstrap/ui-bootstrap.js',
+            'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+            'bower_components/angular-ui-router/release/angular-ui-router.js',
         ],
         src: [
-            app 		+ '/app.js',
-            app 		+ '/**/*-module.js',
-            app 		+ '/**/*-service.js',
-            app 		+ '/**/*-directive.js',
-            app 		+ '/**/*-filter.js',
-            app 		+ '/**/*-controller.js',
+            app         + '/app.js',
+            app         + '/**/*-module.js',
+            app         + '/**/*-service.js',
+            app         + '/**/*-directives.js',
+            app         + '/**/*-filter.js',
+            app         + '/**/*-controller.js'
         ]
     },
     partials: [
-        { files: [ app + '/**/*.html', '!' + app + '/index.html' ] }
+        app + '/**/*.html', '!' + app + '/index.html', '!' + app + '/plugins/**/*.html'
     ],
     css: [
+        'bower_components/font-awesome/css/font-awesome.css',
         'bower_components/bootstrap/dist/css/bootstrap.css',
+        'bower_components/angular-bootstrap/ui-bootstrap-csp.css'
     ],
     less: [
-        app + '/**/*.less',
+        app + '/**/*.less'
     ],
     images: [
-        app + '/img/**/*.{png,jpg,svg,gif,jpeg,PNG,JPG,SVG,GIF,JPEG}'
+        app + '/**/*.{png,jpg,svg,gif,jpeg,ico,PNG,JPG,SVG,GIF,JPEG}'
     ],
     fonts: [
         'bower_components/bootstrap/fonts/**/*',
+        'bower_components/font-awesome/fonts/**/*',
+        'bower_components/simple-line-icons/fonts/**/*',
     ],
     misc: [
         app + '/index.html', app + '/404.html'
     ]
 };
 
+var api = {
+    pattern: '@@api',
+    url: 'YOUR_API_URL'
+};
+
+gulp.task('jshint', function () {
+    return gulp.src(paths.js.src)
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'));
+});
+
 gulp.task('js', function () {
     var stream = streamqueue({ objectMode: true });
 
     stream.queue(
         gulp.src(paths.js.libs.concat(paths.js.src))
-            .pipe(plumber())
             .pipe(concat('src.js'))
     );
 
-    paths.partials.forEach(function (partials) {
-        stream.queue(
-            gulp.src(partials.files)
-                .pipe(plumber())
-                .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-                .pipe(ngtemplates({ module: 'skeleton-app', root: partials.root }))
-        );
-    });
+    stream.queue(
+        gulp.src(paths.partials)
+            .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+            .pipe(ngtemplates({ module: appName }))
+    );
 
-    stream.done()
-        .pipe(plumber())
+    return stream.done()
+        .pipe(replace(api.pattern, api.url))
         .pipe(concat('app.js'))
+        .pipe(env === 'production' ? uglify({ mangle: false }) : gutil.noop())
         .pipe(gulp.dest(dist + '/js/'))
         .pipe(livereload());
 });
@@ -76,53 +101,46 @@ gulp.task('styles', function () {
 
     stream.queue(
         gulp.src(paths.css)
-            .pipe(plumber())
-            .pipe(concat('styles.less'))
+            .pipe(concat('styles.css'))
     );
 
     stream.queue(
         gulp.src(paths.less)
-            .pipe(plumber())
             .pipe(concat('styles.less'))
             .pipe(less())
     );
 
-    stream.done()
+    return stream.done()
         .pipe(concat('app.css'))
-        .pipe(plumber())
+        .pipe(uncss({
+            html: paths.partials,
+            ignore: [ 'hover', 'click', 'focus', 'active' ]
+        }))
+        .pipe(minifyCss())
         .pipe(gulp.dest(dist + '/css/'))
         .pipe(livereload());
 });
 
 gulp.task('copy', function () {
-    gulp.src(paths.misc)
-        .pipe(gulp.dest(dist))
-        .pipe(livereload());
-
-    gulp.src(paths.fonts)
-        .pipe(plumber())
-        .pipe(gulp.dest(dist + '/fonts/'));
+    return gulp.src(paths.misc)
+        .pipe(gulp.dest(dist));
 });
 
 gulp.task('img', function () {
      return gulp.src(paths.images)
-        .pipe(plumber())
         .pipe(gulp.dest(dist + '/img/'));
 });
 
 gulp.task('fonts', function () {
     return gulp.src(paths.fonts)
-        .pipe(plumber())
         .pipe(gulp.dest(dist + '/fonts/'));
 });
 
 gulp.task('utils', function () {
     gulp.src('bower_components/angular/angular.min.js.map')
-        .pipe(plumber())
         .pipe(gulp.dest(dist + '/js/'));
 
-    return gulp.src('bower_components/bootstrap/dist/css/bootstrap.css.map')
-        .pipe(plumber())
+    gulp.src('bower_components/bootstrap/dist/css/bootstrap.css.map')
         .pipe(gulp.dest(dist + '/css/'));
 });
 
@@ -131,12 +149,11 @@ gulp.task('watch', function () {
     gulp.watch(paths.js.src, ['js']);
     gulp.watch(paths.less, ['styles']);
     gulp.watch(paths.misc, ['copy']);
-    paths.partials.forEach(function (partials) {
-        gulp.watch(partials.files, ['js']);
-    });
+    gulp.watch(paths.partials, ['styles', 'js']);
 });
 
 gulp.task('default', [
+    'jshint',
     'js',
     'styles',
     'copy',
