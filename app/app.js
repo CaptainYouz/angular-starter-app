@@ -1,25 +1,24 @@
-var app = angular.module('skeleton-app', [
-	'ui.router',
-	'skeleton-app.home'
-]);
+(function () { 'use strict';
+	angular.module('skeleton-app', [
+		// External modules
+		'ui.router',
+		// Components
+		'skeleton-app.home'
+	]);
 
-app.config(function ($urlRouterProvider, $stateProvider) {
-	$stateProvider.state('skeleton-app', {
-		url: '/',
-		abstract: true,
-		views : {
-			'header': {
-				templateUrl: 'header/header.html'
-			},
-			'footer' : {
-				templateUrl: 'footer/footer.html'
+	function routesConfig ($urlRouterProvider, $stateProvider) {
+		$stateProvider.state('skeleton-app', {
+			url: '/',
+			abstract: true,
+			views : {
+				'header': { templateUrl: 'header/header.html' },
+				'footer': { templateUrl: 'footer/footer.html' }
 			}
-		}
-	});
+		});
 
-	$urlRouterProvider.otherwise('/home');
-});
+		$urlRouterProvider.otherwise('/home');
+	}
 
-app.run(function ($rootScope) {
-	$rootScope.isMobile = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
-});
+	// Config
+	angular.module('skeleton-app').config(routesConfig);
+})();
