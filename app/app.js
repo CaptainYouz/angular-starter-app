@@ -1,24 +1,24 @@
-(function () { 'use strict';
-	angular.module('skeleton-app', [
-		// External modules
-		'ui.router',
-		// Components
-		'skeleton-app.home'
-	]);
+(() => { 'use strict';
+  angular.module('skeleton-app', [
+    // External modules
+    'ui.router',
+    // Components
+    'skeleton-app.home'
+  ]);
 
-	function routesConfig ($urlRouterProvider, $stateProvider) {
-		$stateProvider.state('skeleton-app', {
-			url: '/',
-			abstract: true,
-			views : {
-				'header': { templateUrl: 'header/header.html' },
-				'footer': { templateUrl: 'footer/footer.html' }
-			}
-		});
+  function routesConfig ($urlRouterProvider, $stateProvider) {
+    $stateProvider.state('skeleton-app', {
+      url: '/',
+      abstract: true,
+      views : {
+        'header': { templateUrl: 'header/header.html' },
+        'footer': { templateUrl: 'footer/footer.html' }
+      }
+    });
 
-		$urlRouterProvider.otherwise('/home');
-	}
+    $urlRouterProvider.otherwise('/home');
+  }
 
-	// Config
-	angular.module('skeleton-app').config(routesConfig);
+  // Config
+  angular.module('skeleton-app').config(routesConfig);
 })();

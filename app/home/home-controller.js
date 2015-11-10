@@ -3,12 +3,12 @@
  * @namespace Controllers
  */
 
-(function () { 'use strict';
-	function HomeController () {
-		var vm = this;
+(() => { 'use strict';
+  function HomeController () {
+    var vm = this;
 
-		vm.welcome = 'Hello World!';
-	}
+    vm.welcome = 'Hello World!';
+  }
 
-	angular.module('skeleton-app.home').controller('HomeController', HomeController);
+  angular.module('skeleton-app.home').controller('HomeController', HomeController);
 })();
