@@ -24,7 +24,7 @@ gutil.log('Building of the ' + env + ' environment.');
 var paths = {
   js: {
     libs: [
-      'bower_components/moment/min/moment.js',
+      'bower_components/moment/min/moment.min.js',
       'bower_components/lodash/lodash.min.js',
       'bower_components/angular/angular.min.js',
       'bower_components/angular-bootstrap/ui-bootstrap.min.js',
