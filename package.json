@@ -5,8 +5,10 @@
   "author": "Your Name <your.mail@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-preset-es2015": "^6.1.2",
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^1.8.0",
+    "gulp-babel": "^6.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-htmlmin": "^1.2.0",
     "gulp-jshint": "^1.11.2",
