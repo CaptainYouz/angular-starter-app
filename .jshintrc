@@ -22,6 +22,6 @@
     "exports": false,
     "console": false,
     "_": false,
-    "moment": false,
+    "moment": false
   }
 }
