@@ -15,9 +15,13 @@
   "strict": false,
   "trailing": true,
   "smarttabs": true,
+  "esnext": true,
   "globals": {
     "angular": false,
     "require": false,
-    "console": false
+    "exports": false,
+    "console": false,
+    "_": false,
+    "moment": false,
   }
 }
