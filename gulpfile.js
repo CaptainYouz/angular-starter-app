@@ -57,7 +57,6 @@ var paths = {
   fonts: [
     'bower_components/bootstrap/fonts/**/*',
     'bower_components/font-awesome/fonts/**/*',
-    'bower_components/simple-line-icons/fonts/**/*',
   ],
   misc: [
     app + '/index.html', app + '/404.html'
@@ -102,6 +101,10 @@ gulp.task('js', function() {
     .pipe(babel({
       presets: ['es2015']
     }))
+    .on('error', function(err) {
+      console.log(err);
+      this.emit('end');
+    })
     .pipe(env === 'production' ? uglify({mangle: false}) : gutil.noop())
     .pipe(gulp.dest(dist + '/js/'))
     .pipe(livereload());
