@@ -8,7 +8,6 @@ var ngtemplates = require('gulp-angular-templatecache');
 var less        = require('gulp-less');
 var jshint      = require('gulp-jshint');
 var uglify      = require('gulp-uglify');
-var uncss       = require('gulp-uncss');
 var minifyCss   = require('gulp-minify-css');
 var livereload  = require('gulp-livereload');
 var babel       = require('gulp-babel');
@@ -126,10 +125,6 @@ gulp.task('styles', function () {
 
   return stream.done()
     .pipe(concat('app.css'))
-    .pipe(uncss({
-      html: paths.partials,
-      ignore: [ 'hover', 'click', 'focus', 'active' ]
-    }))
     .pipe(minifyCss())
     .pipe(gulp.dest(dist + '/css/'))
     .pipe(livereload());
