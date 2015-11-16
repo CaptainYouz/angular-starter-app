@@ -9,6 +9,12 @@ This project is developed in a modular way and implement the MVC pattern.
 Each features represent a module (for example: login, home, admin...)
 Each module contains files related to it (for example: login-controller.js, login.html, login.css)
 
+####Design
+On this seed project, you can use two different design:
+
+- on branch <i>master</i> : we use Bootstrap, UI-Bootstrap and Font-Awesome
+- on branch <i>material</i> : we use Angular Material
+
 #####ES6
 This project use ECMAScript 6. Since not all browsers are up to date with this version of javascript, a gulp task using BabelJs change ES6 code to ES5 so you can code in ES6.
 
