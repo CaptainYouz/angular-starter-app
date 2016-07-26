@@ -1,25 +1,36 @@
 {
-  "name": "AppName",
-  "version": "0.0.0",
-  "description": "Simple template for an Angular app using Bower and Gulp",
-  "author": "Your Name <your.mail@gmail.com>",
+  "name": "angular-starter-app",
+  "version": "0.2.0",
+  "description": "Angular starter app using browser-sync and ES6",
+  "author": "Captain Youz <captainyouz@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "babel-preset-es2015": "^6.1.2",
+    "browser-sync": "^2.12.8",
+    "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^1.8.0",
     "gulp-babel": "^6.1.0",
+    "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.6.0",
+    "gulp-extend": "^0.2.0",
     "gulp-htmlmin": "^1.2.0",
+    "gulp-if": "^2.0.0",
+    "gulp-inject": "^4.0.0",
     "gulp-jshint": "^1.11.2",
     "gulp-less": "^3.0.3",
-    "gulp-livereload": "^3.8.1",
     "gulp-minify-css": "^1.2.1",
+    "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-uglify": "^1.4.2",
-    "gulp-uncss": "^1.0.4",
+    "gulp-useref": "^3.0.8",
     "gulp-util": "^3.0.6",
     "jshint-stylish": "^2.0.1",
+    "require-dir": "^0.3.0",
     "streamqueue": "^1.1.1"
+  },
+  "babel": {},
+  "devDependencies": {
+    "gulp-load-plugins": "^1.2.0"
   }
 }

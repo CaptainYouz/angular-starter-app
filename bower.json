@@ -1,19 +1,13 @@
 {
-  "name": "<AppName>",
-  "version": "0.0.0",
+  "name": "angular-starter-app",
+  "version": "0.2.0",
   "authors": [
-    "Your Name <your.mail@gmail.com>"
+    "Captain Youz <captainyouz@gmail.com>"
   ],
-  "description": "Simple template of an Angular app using Bower and Gulp",
+  "description": "Angular starter app using browser-sync and ES6",
   "license": "MIT",
-  "private": true,
   "dependencies": {
-    "angular": "~1.4.7",
-    "angular-bootstrap": "~0.14.1",
-    "angular-ui-router": "~0.2.15",
-    "bootstrap": "~3.3.5",
-    "font-awesome": "~4.4.0",
-    "lodash": "~3.10.1",
-    "moment": "~2.10.6"
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1"
   }
 }

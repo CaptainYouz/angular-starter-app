@@ -1,24 +1,22 @@
 (() => { 'use strict';
-  angular.module('skeleton-app', [
-    // External modules
-    'ui.router',
-    // Components
-    'skeleton-app.home'
+  angular.module('angular-starter-app', [
+    'ui.router'
   ]);
 
-  function routesConfig ($urlRouterProvider, $stateProvider) {
-    $stateProvider.state('skeleton-app', {
+  function routesConfig($urlRouterProvider, $stateProvider) {
+    $stateProvider.state('app', {
       url: '/',
-      abstract: true,
-      views : {
-        'header': { templateUrl: 'header/header.html' },
-        'footer': { templateUrl: 'footer/footer.html' }
+      views: {
+        'content@': {
+          templateUrl: 'components/home/home.html',
+          controller: 'HomeController as homeVm'
+        }
       }
     });
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
   }
 
   // Config
-  angular.module('skeleton-app').config(routesConfig);
+  angular.module('angular-starter-app').config(routesConfig);
 })();

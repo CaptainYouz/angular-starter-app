@@ -16,12 +16,28 @@
   "trailing": true,
   "smarttabs": true,
   "esnext": true,
+  "-W100": true,
   "globals": {
     "angular": false,
     "require": false,
     "exports": false,
     "console": false,
+    "CryptoJS": false,
+    "describe": false,
+    "browser": false,
+    "it": false,
+    "expect": false,
+    "beforeEach": false,
+    "element": false,
+    "by": false,
     "_": false,
-    "moment": false
+    "moment": false,
+    "CryptoJS": false,
+    "swal": false,
+    "module": false,
+    "inject": false,
+    "WaveSurfer": false,
+    "$httpBackend": false,
+    "io": false
   }
 }
