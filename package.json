@@ -5,6 +5,8 @@
   "author": "Captain Youz <captainyouz@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "angular": "^1.6.2",
+    "angular-ui-router": "^0.4.2",
     "babel-preset-es2015": "^6.1.2",
     "browser-sync": "^2.12.8",
     "del": "^2.2.0",

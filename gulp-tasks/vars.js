@@ -10,8 +10,8 @@ module.exports = {
     index: app + '/index.html',
     js: {
       libs: [
-        'bower_components/angular/angular.min.js',
-        'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+        'node_modules/angular/angular.min.js',
+        'node_modules/angular-ui-router/release/angular-ui-router.min.js',
       ],
       src: [
         app + '/app.js',

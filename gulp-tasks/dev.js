@@ -1,5 +1,3 @@
-var streamqueue = require('streamqueue');
-var pjson       = require('../package.json');
 var vars        = require('./vars.js');
 var del         = require('del');
 var gulp        = require('gulp');
@@ -36,13 +34,13 @@ gulp.task('dev:inject', ['dev:js'], function() {
   .pipe(gulp.dest(vars.devServer))
   .pipe($.inject(cssSources, {
     relative: true,
-    transform: function(filepath, file) {
+    transform: function(filepath) {
       return '<link href="'+ filepath +'" rel="stylesheet">';
     }
   }))
   .pipe($.inject(jsLibSources, {
     relative: true,
-    transform: function(filepath, file) {
+    transform: function(filepath) {
       return '<script type="text/javascript" src="'+ filepath +'"></script>';
     }
   }))

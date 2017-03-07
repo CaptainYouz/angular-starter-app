@@ -3,10 +3,10 @@ node_modules/
 dist/
 .DS_Store
 npm-debug.log
-./index.html
-./css
+index.html
+css
 ./tests
-./js
-./img
-./translations
-./fonts
+js
+img
+translations
+fonts
